@@ -9,8 +9,3 @@ G
 src/components/Modal.js,e\8\e8bb848a05d0346ac6a34dc65c713b1d887c2bb2
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-:
-
-src/App.js,1\e\1e43fa63aecd2127be034b3fb9d4caa172275714
-=
-src/index.css,c\5\c5d38a62d1faae90a2acaa34b79a7ef365c917e4
