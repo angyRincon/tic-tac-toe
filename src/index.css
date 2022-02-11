@@ -99,6 +99,14 @@ body {
     box-shadow: 0 4px 1px var(--cell-shadow);
 }
 
+.header .turn span {
+    font-weight: 800;
+    font-size: 16px;
+    font-family: var(--secondary-font);
+    margin-right: 3px;
+}
+
+
 .header .reset {
     border: none;
     background-color: var(--reset);
@@ -115,17 +123,8 @@ body {
     box-shadow: 0 2px 1px var(--reset-shadow);
 }
 
-
 .header .reset i {
     font-size: 16px;
-}
-
-
-.header .turn span {
-    font-weight: 800;
-    font-size: 16px;
-    font-family: var(--secondary-font);
-    margin-right: 3px;
 }
 
 .container .cell {
@@ -157,13 +156,13 @@ body {
 }
 
 .winner-cell-x .symbol-x,
-.winner-cell-o .symbol-o
-{
+.winner-cell-o .symbol-o {
     color: var(--background);
 }
 
 .container .cell:active {
     box-shadow: 0 4px 1px var(--cell-shadow);
+    -webkit-tap-highlight-color: transparent;
 }
 
 .footer div {
@@ -304,6 +303,10 @@ body {
 }
 
 @media (max-width: 450px) {
+    .header {
+        margin-top: 0px;
+    }
+
     .modal .modal-content .modal-body span:nth-child(2) {
         font-size: 25px;
     }
@@ -315,13 +318,8 @@ body {
 }
 
 @media (max-width: 383px) {
-    .modal .modal-content .modal-body span:nth-child(2) {
-        font-size: 20px;
-    }
-
-    .modal .modal-content .modal-body span:nth-child(1) {
-        font-size: 50px;
-        margin-right: 10px;
+    .header {
+        margin-top: 0;
     }
 
     .container .cell {
@@ -331,4 +329,14 @@ body {
         height: 5px;
         max-height: 5px;
     }
+
+    .modal .modal-content .modal-body span:nth-child(2) {
+        font-size: 20px;
+    }
+
+    .modal .modal-content .modal-body span:nth-child(1) {
+        font-size: 50px;
+        margin-right: 10px;
+    }
+
 }
