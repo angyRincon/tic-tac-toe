@@ -308,10 +308,11 @@ body {
     box-shadow: 0 2px 1px var(--cross-shadow);
 }
 
-@media (max-width: 450px) {
+@media screen and (max-width: 450px) {
     .header {
-        margin-top: 0px;
+        margin-top: 120px;
     }
+
 
     .modal .modal-content .modal-body span:nth-child(2) {
         font-size: 25px;
@@ -325,7 +326,7 @@ body {
 
 @media (max-width: 383px) {
     .header {
-        margin-top: 50px;
+        margin-top: 40px;
     }
 
     .container .cell {
