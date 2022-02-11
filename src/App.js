@@ -7,7 +7,7 @@ const list = new Array(9).fill('');
 const App = () => {
     const [cellsSelected, setCellsSelected] = useState(list);
     const [selected, setSelected] = useState('x');
-    const [counter, setCounter] = useState({cross: 0, circle: 0});
+    const [counter, setCounter] = useState({cross: 0, circle: 0, ties: 0});
     const [winnerCells, setWinnerCells] = useState([]);
     const [winner, setWinner] = useState(null);
 
@@ -30,10 +30,10 @@ const App = () => {
     }
 
     const handleCount = () => {
-        const {cross, circle} = counter;
+        const {cross, circle, ties} = counter;
         if (winner) {
-            if (selected === 'o') setCounter({...counter, cross: cross + 1});
-            else setCounter({...counter, circle: circle + 1});
+            if (selected === 'o') setCounter({...counter, cross: cross + 1, ties: ties + 1});
+            else setCounter({...counter, circle: circle + 1, ties: ties + 1});
         }
     }
 
@@ -41,7 +41,7 @@ const App = () => {
         setWinner(null);
         setSelected('x');
         setCellsSelected(list);
-        if (all) setCounter({cross: 0, circle: 0})
+        if (all) setCounter({cross: 0, circle: 0, ties: 0})
     }
 
     const handleClick = (i) => {
@@ -110,7 +110,7 @@ const App = () => {
 
                 <div>
                     <h6>Ties</h6>
-                    <span>0</span>
+                    <span>{counter.ties}</span>
                 </div>
 
                 <div>
