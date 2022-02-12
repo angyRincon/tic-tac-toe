@@ -1,4 +1,14 @@
-const Modal = ({ handleReset, winner }) => {
+import React from "react";
+import classNames from "classnames";
+
+import './modalWinner.css';
+
+const ModalWinner = ({handleReset, winner}) => {
+
+    const modalSymbolsClasses = classNames({
+        'symbol-x': winner === 'x',
+        'symbol-o': winner === 'o'
+    })
 
     return (
         <div className='modal'>
@@ -7,7 +17,7 @@ const Modal = ({ handleReset, winner }) => {
                     <h6>you won!</h6>
                 </div>
 
-                <div className={` modal-body ${ winner === 'x' ? 'winner-x' : 'winner-o'} `} >
+                <div className={classNames('modal-body', modalSymbolsClasses)}>
                     <span>{winner}</span>
                     <span>takes the round</span>
                 </div>
@@ -15,7 +25,7 @@ const Modal = ({ handleReset, winner }) => {
                 <div className='modal-footer'>
                     <button onClick={() => handleReset(true)}>quit</button>
                     <button
-                        className={`${winner === 'x' ? 'winner-x' : 'winner-o' }`}
+                        className={modalSymbolsClasses}
                         onClick={() => handleReset(false)}
                     >
                         next round
@@ -26,4 +36,4 @@ const Modal = ({ handleReset, winner }) => {
     );
 };
 
-export default Modal;
+export default ModalWinner;

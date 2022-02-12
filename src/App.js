@@ -1,47 +1,39 @@
-import {useEffect, useState} from "react";
-import {winnerPossibilities} from "./winnerPosibilities";
-import Modal from "./components/Modal";
+import React, {useEffect, useState} from "react";
+import ModalWinner from "./components/Modal/ModalWinner";
+import Header from "./components/Header/Header";
+import Container from "./components/Container/Container";
+import Footer from "./components/Footer/Footer";
+import { getWinner } from "./helpers/winnerPosibilities";
 
 const list = new Array(9).fill('');
+const initialCounter = { cross: 0, circle: 0, ties: 0 };
+const initialWinner = { winner: null, pattern: [] };
 
 const App = () => {
     const [cellsSelected, setCellsSelected] = useState(list);
     const [selected, setSelected] = useState('x');
-    const [counter, setCounter] = useState({cross: 0, circle: 0, ties: 0});
-    const [winnerCells, setWinnerCells] = useState([]);
-    const [winner, setWinner] = useState(null);
+    const [counter, setCounter] = useState(initialCounter);
+    const [winnerState, setWinnerState] = useState(initialWinner);
 
-    const getWinner = (cells) => {
-        for (let i in winnerPossibilities) {
-            winnerPossibilities[i].forEach(pattern => {
-                if (
-                    cells[pattern[0]] === '' ||
-                    cells[pattern[1]] === '' ||
-                    cells[pattern[2]] === ''
-                ) return
-
-                if (cells[pattern[0]] === cells[pattern[1]] && cells[pattern[1]] === cells[pattern[2]]) {
-                    console.log(pattern)
-                    setWinnerCells(pattern)
-                    setWinner(cells[pattern[0]]);
-                }
-            })
-        }
-    }
+    const { winner } = winnerState;
 
     const handleCount = () => {
+
         const {cross, circle, ties} = counter;
+
         if (winner) {
-            if (selected === 'o') setCounter({...counter, cross: cross + 1, ties: ties + 1});
-            else setCounter({...counter, circle: circle + 1, ties: ties + 1});
+            if (selected === 'o')
+                setCounter({...counter, cross: cross + 1, ties: ties + 1});
+            else
+                setCounter({...counter, circle: circle + 1, ties: ties + 1});
         }
     }
 
     const handleReset = (all) => {
-        setWinner(null);
+        setWinnerState({...winnerState, winner: null });
         setSelected('x');
         setCellsSelected(list);
-        if (all) setCounter({cross: 0, circle: 0, ties: 0})
+        if (all) setCounter(initialCounter)
     }
 
     const handleClick = (i) => {
@@ -57,7 +49,7 @@ const App = () => {
             setSelected('x')
         }
 
-        getWinner(localCells)
+        getWinner(localCells, setWinnerState);
         setCellsSelected(localCells)
     }
 
@@ -67,61 +59,23 @@ const App = () => {
 
     return (
         <>
-            <div className="header">
-                <div className='coso'>
-                    <span>x</span>
-                    <span>o</span>
-                </div>
+            <Header
+                selected={selected}
+                handleReset={handleReset}
+            />
 
-                <button className='turn'>
-                    <span>{selected}</span> turn
-                </button>
+            <Container
+                list={list}
+                winnerState={winnerState}
+                cellsSelected={cellsSelected}
+                handleClick={handleClick}
+            />
 
-                <button className='reset' onClick={handleReset}>
-                    <i className="fa-solid fa-arrow-rotate-right"/>
-                </button>
-            </div>
+            <Footer
+                counter={counter}
+            />
 
-            <div className='container'>
-                {
-                    list.map((l, index) => {
-                        let winnerClass = winnerCells.includes(index);
-
-                        return <div
-                            key={index}
-                            className={`cell
-                            ${winnerClass && winner === 'o' && 'winner-cell-o'} 
-                            ${winnerClass && winner === 'x' && 'winner-cell-x'}`}
-                            onClick={() => handleClick(index)}
-                        >
-                            <span className={cellsSelected[index] === 'x' ? 'symbol-x' : 'symbol-o'}>
-                                {cellsSelected[index]}
-                            </span>
-                        </div>
-                    })
-                }
-            </div>
-
-            <div className="footer">
-                <div>
-                    <h6>x (you)</h6>
-                    <span>{counter.cross}</span>
-                </div>
-
-                <div>
-                    <h6>Ties</h6>
-                    <span>{counter.ties}</span>
-                </div>
-
-                <div>
-                    <h6>o (cpu)</h6>
-                    <span>{counter.circle}</span>
-                </div>
-            </div>
-
-            {
-                winner && <Modal handleReset={handleReset} winner={winner}/>
-            }
+            { winner && <ModalWinner handleReset={ handleReset } winner={ winner } /> }
         </>
     );
 }

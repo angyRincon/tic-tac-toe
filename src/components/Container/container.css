@@ -1,0 +1,50 @@
+.container .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cell);
+    box-shadow: 0 6px 1px var(--cell-shadow);
+    padding: 50px;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    width: 100px;
+    max-width: 100px;
+    height: 100px;
+    max-height: 100px;
+}
+
+.container .cell span {
+    font-size: 70px;
+    font-weight: 800;
+    font-family: var(--secondary-font);
+    transform: translateY(-5px);
+}
+
+.container .winner-cell-x {
+    background-color: var(--cross);
+}
+
+.container .winner-cell-o {
+    background-color: var(--circle);
+}
+
+.container .winner-cell-x span,
+.container .winner-cell-o span {
+    color: var(--background) !important;
+}
+
+.container .cell:active {
+    box-shadow: 0 4px 1px var(--cell-shadow);
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 383px) {
+    .container .cell {
+        padding: 45px;
+        width: 5px;
+        max-width: 5px;
+        height: 5px;
+        max-height: 5px;
+    }
+}

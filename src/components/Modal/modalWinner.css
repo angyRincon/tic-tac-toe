@@ -1,0 +1,128 @@
+.modal {
+    background-color: var(--backdrop);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+
+.modal .modal-content {
+    position: absolute;
+    background-color: var(--modal);
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    animation: linear;
+    animation-name: modal;
+    animation-duration: 0.3s;
+}
+
+@keyframes modal {
+    0% {
+        left: 100%;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+
+.modal .modal-content .modal-header h6 {
+    color: var(--reset);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: -10px;
+}
+
+.modal .modal-content .modal-body {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+}
+
+
+.modal .modal-content .modal-body span:nth-child(2) {
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.modal .modal-content .modal-body span:nth-child(1) {
+    transform: translateY(-10px);
+    margin-right: 15px;
+    font-size: 70px;
+    font-family: var(--secondary-font);
+    text-transform: lowercase;
+}
+
+.modal .modal-content .modal-footer button {
+    border: 0;
+    padding: 10px 12px;
+    margin-right: 10px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    cursor: pointer;
+}
+
+.modal .modal-content .modal-footer button:nth-child(1) {
+    background-color: var(--reset);
+    box-shadow: 0 3px 1px var(--reset-shadow);
+}
+
+.modal .modal-content .modal-footer button:nth-child(1):active {
+    box-shadow: 0 2px 1px var(--reset-shadow);
+}
+
+.modal .modal-content .modal-footer button:nth-child(2).symbol-x {
+    background-color: var(--circle);
+    box-shadow: 0 3px 1px var(--circle-shadow);
+}
+
+.modal .modal-content .modal-footer button:nth-child(2):active {
+    box-shadow: 0 2px 1px var(--circle-shadow);
+}
+
+.modal .modal-content .modal-footer button:nth-child(2).symbol-o {
+    background-color: var(--cross);
+    box-shadow: 0 3px 1px var(--cross-shadow);
+}
+
+.modal .modal-content .modal-footer button:nth-child(2).symbol-o:active {
+    box-shadow: 0 2px 1px var(--cross-shadow);
+}
+
+@media screen and (max-width: 450px) {
+    .modal .modal-content .modal-body span:nth-child(2) {
+        font-size: 25px;
+    }
+
+    .modal .modal-content .modal-body span:nth-child(1) {
+        font-size: 60px;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 383px) {
+    .modal .modal-content .modal-body span:nth-child(2) {
+        font-size: 20px;
+    }
+
+    .modal .modal-content .modal-body span:nth-child(1) {
+        font-size: 50px;
+        margin-right: 10px;
+    }
+}

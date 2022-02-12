@@ -1,0 +1,71 @@
+.header {
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+
+.header div span {
+    font-size: 40px;
+    font-weight: 800;
+    font-family: var(--secondary-font);
+    margin-right: 5px;
+}
+
+.header div span:nth-child(1) {
+    color: var(--cross);
+}
+
+.header div span:nth-child(2) {
+    color: var(--circle);
+}
+
+.header .turn {
+    background-color: var(--cell);
+    border: none;
+    border-radius: 5px;
+    color: var(--reset);
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 8px;
+    box-shadow: 0 4px 1px var(--cell-shadow);
+}
+
+.header .turn span {
+    font-weight: 800;
+    font-size: 16px;
+    font-family: var(--secondary-font);
+    margin-right: 3px;
+}
+
+
+.header .reset {
+    border: none;
+    background-color: var(--reset);
+    color: var(--background);
+    padding: 10px;
+    border-radius: 7px;
+    width: 40%;
+    margin-left: 60%;
+    cursor: pointer;
+    box-shadow: 0 3px 1px var(--reset-shadow);
+}
+
+.header .reset:active {
+    box-shadow: 0 2px 1px var(--reset-shadow);
+}
+
+.header .reset i {
+    font-size: 16px;
+}
+
+@media screen and (max-width: 450px) {
+    .header {
+        margin-top: 120px;
+    }
+
+}
+
+@media (max-width: 383px) {
+    .header {
+        margin-top: 40px;
+    }
+}
